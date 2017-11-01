@@ -1,0 +1,33 @@
+body {
+    background-color: #ccc;
+}
+
+.fork-me {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.fork-me img {
+    width: 150px;
+    height: auto;
+}
+
+.text-area {
+    width: 100%;
+    min-height: 400px;
+    resize: none;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.image-display img {
+    border: 1px rgba(0, 0, 0, 0.3) solid;
+    display: block;
+    margin: 15px auto;
+}
+
+.code-example {
+    display: none;
+    font-family: FontAwesome,Menlo,Monaco,Consolas,"Courier New",monospace;
+}
