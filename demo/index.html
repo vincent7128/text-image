@@ -57,6 +57,14 @@ Cambia este texto crea tu imagen.
                 </select>
             </div>
             <div class="form-group">
+                <label>Font align:</label>
+                <select name="font-align">
+                    <option selected value="left">left</option>
+                    <option value="center">center</option>
+                    <option value="right">right</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Font color:</label>
                 <select name="font-color">
                     <option value="#F0F8FF" style="color:#F0F8FF"> #F0F8FF </option>
@@ -234,6 +242,7 @@ var textImage1 = TextImage();
 // create new TextImage object with customize style
 var style = {
     font: 'serif',
+    align: 'center',
     color: 'red',
     size: 18,
 };
@@ -248,18 +257,20 @@ var data = textImage.toDataURL(message);
 // change style
 textImage.setStyle(style);</pre>
         <h3>Style object</h3>
-        <p>The default style object
-            <p>
-                <pre>{
+        <p>The default style object</p>
+        <pre>{
 font: 'Sans-serif',
+align: 'left',
 color: '#000000',
 size: 16
 }</pre>
-                <h4>font</h4>
-                <p>The font property like css font-family and you can use web fonts like FontAwesome.</p>
-                <h4>color</h4>
-                <p>The color property like css color.</p>
-                <pre>/* &lt;named-color&gt; values */
+        <h4>font</h4>
+        <p>The font property like css font-family and you can use web fonts like FontAwesome.</p>
+        <h4>align</h4>
+        <p>The align property specifies the horizontal alignment of text, use 'left', 'center' or 'right'.</p>
+        <h4>color</h4>
+        <p>The color property like css color.</p>
+        <pre>/* &lt;named-color&gt; values */
 color: 'red'
 color: 'orange'
 color: 'tan'
@@ -282,14 +293,14 @@ color: 'hsl(30, 100%, 50%, 0.6)
 color: 'hsla(30, 100%, 50%, 0.6)
 color: 'hsl(30 100% 50% / 0.6)
 color: 'hsla(30 100% 50% / 0.6)</pre>
-                <h4>size</h4>
-                <p>The size property is the font size only use numbers.</p>
-                <footer>
-                    <hr>
-                    <h3>License</h3>
-                    <p>This project is licensed under the MIT License - see the <a href="https://github.com/vincent7128/text-image/blob/master/LICENSE">LICENSE</a> file for details
-                        <p>
-                </footer>
+        <h4>size</h4>
+        <p>The size property is the font size only use numbers.</p>
+        <footer>
+            <hr>
+            <h3>License</h3>
+            <p>This project is licensed under the MIT License - see the <a href="https://github.com/vincent7128/text-image/blob/master/LICENSE">LICENSE</a> file for details
+                <p>
+        </footer>
     </div>
 </body>
 
