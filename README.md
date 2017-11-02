@@ -83,4 +83,4 @@ The size property is the font size only use numbers.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](blob/master/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
