@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/ css" href="demo/css/style.css" />
-    <script src="dist/text-image-0.1.0.min.js"></script>
+    <script src="dist/text-image-0.2.0.min.js"></script>
     <script src="demo/js/demo.js"></script>
 </head>
 
@@ -42,7 +42,7 @@ Cambia este texto crea tu imagen.
 </textarea>
             </div>
             <div class="image-display text-center">
-                <a class="image-download btn btn-success" target="_blank" download="text-image-0.1.0.js.png">download image</a>
+                <a class="image-download btn btn-success" target="_blank" download="text-image-0.2.0.js.png">download image</a>
             </div>
             <div class="form-group">
                 <label class="form-check-label">Show grid line: <input name="grid-line" type="checkbox" checked='true'/></label>
@@ -54,6 +54,14 @@ Cambia este texto crea tu imagen.
                     <option value="18">18</option>
                     <option value="24">24</option>
                     <option value="36">36</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Font align:</label>
+                <select name="font-align">
+                    <option selected value="left">left</option>
+                    <option value="center">center</option>
+                    <option value="right">right</option>
                 </select>
             </div>
             <div class="form-group">
@@ -234,6 +242,7 @@ var textImage1 = TextImage();
 // create new TextImage object with customize style
 var style = {
     font: 'serif',
+    align: 'center',
     color: 'red',
     size: 18,
 };
@@ -248,18 +257,20 @@ var data = textImage.toDataURL(message);
 // change style
 textImage.setStyle(style);</pre>
         <h3>Style object</h3>
-        <p>The default style object
-            <p>
-                <pre>{
+        <p>The default style object</p>
+        <pre>{
 font: 'Sans-serif',
+align: 'left',
 color: '#000000',
 size: 16
 }</pre>
-                <h4>font</h4>
-                <p>The font property like css font-family and you can use web fonts like FontAwesome.</p>
-                <h4>color</h4>
-                <p>The color property like css color.</p>
-                <pre>/* &lt;named-color&gt; values */
+        <h4>font</h4>
+        <p>The font property like css font-family and you can use web fonts like FontAwesome.</p>
+        <h4>align</h4>
+        <p>The align property specifies the horizontal alignment of text, use 'left', 'center' or 'right'.</p>
+        <h4>color</h4>
+        <p>The color property like css color.</p>
+        <pre>/* &lt;named-color&gt; values */
 color: 'red'
 color: 'orange'
 color: 'tan'
@@ -282,14 +293,14 @@ color: 'hsl(30, 100%, 50%, 0.6)
 color: 'hsla(30, 100%, 50%, 0.6)
 color: 'hsl(30 100% 50% / 0.6)
 color: 'hsla(30 100% 50% / 0.6)</pre>
-                <h4>size</h4>
-                <p>The size property is the font size only use numbers.</p>
-                <footer>
-                    <hr>
-                    <h3>License</h3>
-                    <p>This project is licensed under the MIT License - see the <a href="https://github.com/vincent7128/text-image/blob/master/LICENSE">LICENSE</a> file for details
-                        <p>
-                </footer>
+        <h4>size</h4>
+        <p>The size property is the font size only use numbers.</p>
+        <footer>
+            <hr>
+            <h3>License</h3>
+            <p>This project is licensed under the MIT License - see the <a href="https://github.com/vincent7128/text-image/blob/master/LICENSE">LICENSE</a> file for details
+                <p>
+        </footer>
     </div>
 </body>
 
