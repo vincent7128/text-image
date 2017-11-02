@@ -44,7 +44,6 @@
         canvas.width = pre.offsetWidth;
         canvas.height = pre.offsetHeight;
         context.font = pre.style.font;
-        console.log(context.textAlign);
         context.textAlign = pre.style.textAlign;
         context.fillStyle = pre.style.color;
         var x = 0;
