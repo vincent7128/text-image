@@ -16,6 +16,7 @@ var textImage1 = TextImage();
 // create new TextImage object with customize style
 var style = {
     font: 'serif',
+    align: 'center',
     color: 'red',
     size: 18,
 };
@@ -38,6 +39,7 @@ The default style object
 ```
 {
     font: 'Sans-serif',
+    align: 'left',
     color: '#000000',
     size: 16
 }
@@ -46,6 +48,9 @@ The default style object
 #### font
 
 The font property like css font-family and you can use web fonts like FontAwesome.
+
+#### align
+The align property specifies the horizontal alignment of text, use 'left', 'center' or 'right'.
 
 #### color
 
