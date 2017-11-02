@@ -100,12 +100,12 @@ var fontawesomeList = [
     codeTemplate = `var message = %MESSAGE%;
 var style = %STYLE%;
 var textImage = TextImage(style);
-document.querySelector("your selector").innerHTML = textImage.toImage(message);
+var img = textImage.toImage(message);
 `,
     textImage,
     textarea,
     gridLine,
-    fontSize, fontColor, fontFamily,
+    fontSize, fontAlign, fontColor, fontFamily,
     imageDisplay, imageDownload,
     codeExample;
 
@@ -114,6 +114,7 @@ function init() {
     textarea = document.querySelector('textarea');
     gridLine = document.querySelector('input[name="grid-line"]');
     fontSize = document.querySelector('select[name="font-size"]');
+    fontAlign = document.querySelector('select[name="font-align"]');
     fontColor = document.querySelector('select[name="font-color"]');
     fontFamily = document.querySelector('select[name="font-family"]');
     imageDisplay = document.querySelector('.image-display');
@@ -122,6 +123,7 @@ function init() {
     textarea.addEventListener('keyup', updateImage, false);
     gridLine.addEventListener('change', showGridLine, false);
     fontSize.addEventListener('change', updateImage, false);
+    fontAlign.addEventListener('change', updateImage, false);
     fontColor.addEventListener('change', updateImage, false);
     fontFamily.addEventListener('change', updateImage, false);
     for (var i = Math.floor(Math.random() * fontawesomeList.length - 10),
@@ -135,8 +137,9 @@ function init() {
 function getStyle() {
     var style = {
         font: fontFamily.value,
-        size: fontSize.value,
-        color: fontColor.value
+        align: fontColor.align,
+        color: fontColor.value,
+        size: fontSize.value
     };
     textImage.setStyle(style);
 }
@@ -144,8 +147,9 @@ function getStyle() {
 function updateImage() {
     var style = {
             font: fontFamily.value,
-            size: parseInt(fontSize.value),
-            color: fontColor.value
+            align: fontAlign.value,
+            color: fontColor.value,
+            size: parseInt(fontSize.value)
         },
         message = textarea.value.trim();
     fontColor.setAttribute('style', fontColor.options[fontColor.selectedIndex].getAttribute('style'));
@@ -156,9 +160,10 @@ function updateImage() {
     }
     textImage.setStyle(style);
     textarea.setAttribute('style',
-        'color: ' + textImage.style.color + ';' +
         'font: ' + textImage.style.size + 'pt ' + textImage.style.font + ';' +
-        'line-height: ' + textImage.style.size + 'pt;')
+        'text-align: ' + textImage.style.align + ';' +
+        'line-height: ' + textImage.style.size + 'pt;' +
+        'color: ' + textImage.style.color + ';');
     textImage.toImage(message, function() {
         if (gridLine.checked) {
             this.style.backgroundImage = textarea.style.backgroundImage = 'url(demo/img/grid-line.png)';

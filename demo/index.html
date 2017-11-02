@@ -57,6 +57,14 @@ Cambia este texto crea tu imagen.
                 </select>
             </div>
             <div class="form-group">
+                <label>Font align:</label>
+                <select name="font-align">
+                    <option selected value="left">left</option>
+                    <option value="center">center</option>
+                    <option value="right">right</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Font color:</label>
                 <select name="font-color">
                     <option value="#F0F8FF" style="color:#F0F8FF"> #F0F8FF </option>
@@ -234,6 +242,7 @@ var textImage1 = TextImage();
 // create new TextImage object with customize style
 var style = {
     font: 'serif',
+    align: 'center',
     color: 'red',
     size: 18,
 };
@@ -252,11 +261,14 @@ textImage.setStyle(style);</pre>
             <p>
                 <pre>{
 font: 'Sans-serif',
+align: 'left',
 color: '#000000',
 size: 16
 }</pre>
                 <h4>font</h4>
                 <p>The font property like css font-family and you can use web fonts like FontAwesome.</p>
+                <h4>align</h4>
+                <p>The align property specifies the horizontal alignment of text, use 'left', 'center' or 'right'.</p>
                 <h4>color</h4>
                 <p>The color property like css color.</p>
                 <pre>/* &lt;named-color&gt; values */
