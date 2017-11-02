@@ -3,20 +3,21 @@
         canvas = document.createElement('canvas'),
         context = canvas.getContext('2d'),
         _style = {
+            font: 'Sans-serif',
+            align: 'left',
             color: '#000000',
-            size: 16,
-            font: 'Sans-serif'
+            size: 16
         },
-    preStyle = ';padding: 0; display: inline-block; position: fixed; top: 100%;';
+        preStyle = ';padding: 0; display: inline-block; position: fixed; top: 100%;';
 
     function setStyle(style) {
         for (var key in style) {
             this.style[key] = style[key];
         }
-        this._style = '';
-        this._style += 'color: ' + this.style.color + ';';
-        this._style += 'font: ' + this.style.size + 'pt ' + this.style.font + ';';
+        this._style = 'font: ' + this.style.size + 'pt ' + this.style.font + ';';
         this._style += 'line-height: ' + this.style.size + 'pt;';
+        this._style += 'text-align: ' + this.style.align + ';';
+        this._style += 'color: ' + this.style.color + ';';
         this._style += preStyle;
         return this;
     }
@@ -43,14 +44,25 @@
         canvas.width = pre.offsetWidth;
         canvas.height = pre.offsetHeight;
         context.font = pre.style.font;
+        console.log(context.textAlign);
+        context.textAlign = pre.style.textAlign;
         context.fillStyle = pre.style.color;
+        var x = 0;
+        switch (context.textAlign) {
+            case 'center':
+                x = canvas.width / 2;
+                break;
+            case 'right':
+                x = canvas.width;
+                break;
+        }
         var lines = message.split('\n');
         if (lines.length == 1) {
-            context.fillText(message, 0, canvas.height - 3);
+            context.fillText(message, x, canvas.height - 3);
         } else {
             var lineHeight = pre.offsetHeight / lines.length;
             lines.forEach(function(line, i) {
-                context.fillText(line, 0, (lineHeight * (i + 1)) - 3);
+                context.fillText(line, x, (lineHeight * (i + 1)) - 3);
             });
         }
     }
