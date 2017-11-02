@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     fs = require('fs'),
     PROJECT;
 
-gulp.task('delete-dist', function() {
+gulp.task('clean', function() {
     return gulp.src(['dist', 'index.html'], {
             read: false
         })
@@ -35,7 +35,7 @@ gulp.task('init', function () {
 
 gulp.task('build', gulpsync.sync([
     'init',
-    'delete-dist',
+    'clean',
     'build-dist'
 ]));
 
