@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="demo/css/style.css">
-    <script src="dist/text-image-%_VERSION_%.min.js"></script>
+    <script src="dist/text-image.min.js"></script>
     <script src="demo/js/demo.js"></script>
 </head>
 
@@ -20,7 +20,7 @@
         <header>
             <h1>Text Image<br><small>(text-image.js)</small></h1>
             <h2>Convert text to image.</h2>
-            <h2>Work with unicode and web font like <a href="http://fontawesome.io/" class="fa fa-link">FontAwesome</a>, you can use emoji too. 🚀</h2>
+            <h2>Work with unicode and web font like <a href="http://fontawesome.io/">FontAwesome<i class="fa fa-link"></i></a>, you can use emoji too. 🚀</h2>
             <div class="text-right">
                 <a href="https://github.com/vincent7128/text-image/archive/master.zip" class="btn btn-success">Download .zip</a>
             </div>
@@ -49,12 +49,7 @@ Cambia este texto crea tu imagen.
             </div>
             <div class="form-group">
                 <label>Font size:</label>
-                <select name="font-size">
-                    <option selected value="16">16</option>
-                    <option value="18">18</option>
-                    <option value="24">24</option>
-                    <option value="36">36</option>
-                </select>
+                <input name="font-size" type="number" value="16" min="16" max="64"/>
             </div>
             <div class="form-group">
                 <label>Font align:</label>
@@ -90,6 +85,22 @@ Cambia este texto crea tu imagen.
                 <label><img src="demo/img/transparent.png"/> <input name="background-color" type="radio" value="rgba(0, 0, 0, 0)" checked></label>
             </div>
             <div class="form-group">
+                <label>Stroke:</label>
+                <input name="stroke" type="number" value="0" min="0" max="6"/>
+            </div>
+            <div class="form-group">
+                <label>Stroke color:</label>
+                <label><img src="demo/img/black.png"/> <input name="stroke-color" type="radio" value="rgba(0, 0, 0, 1)"></label>
+                <label><img src="demo/img/white.png"/> <input name="stroke-color" type="radio" value="rgba(255, 255, 255, 1)" checked></label>
+                <label><img src="demo/img/red.png"/> <input name="stroke-color" type="radio" value="rgba(255, 0, 0, 1)"></label>
+                <label><img src="demo/img/orange.png"/> <input name="stroke-color" type="radio" value="rgba(255, 127, 0, 1)"></label>
+                <label><img src="demo/img/yellow.png"/> <input name="stroke-color" type="radio" value="rgba(255, 255, 0, 1)"></label>
+                <label><img src="demo/img/green.png"/> <input name="stroke-color" type="radio" value="rgba(0, 255, 0, 1)"></label>
+                <label><img src="demo/img/blue.png"/> <input name="stroke-color" type="radio" value="rgba(0, 0, 255, 1)"></label>
+                <label><img src="demo/img/indigo.png"/> <input name="stroke-color" type="radio" value="rgba(75, 0, 130, 1)"></label>
+                <label><img src="demo/img/violet.png"/> <input name="stroke-color" type="radio" value="rgba(149, 0, 211, 1)"></label>
+            </div>
+            <div class="form-group">
                 <label>Font family:</label>
                 <select name="font-family">
                     <option value="serif">serif</option>
@@ -116,8 +127,10 @@ var style = {
     font: 'serif',
     align: 'center',
     color: 'red',
-    background: 'white',
     size: 18,
+    background: 'white',
+    stroke: 1,
+    strokeColor: 'rgba(0, 0, 0, 1)'
 };
 var textImage2 = TextImage(style);
 
@@ -134,16 +147,18 @@ textImage.setStyle(style);</pre>
         <pre>{
 font: 'Sans-serif',
 align: 'left',
-color: 'rgba(0, 0, 0, 1)',
+color: '#000000',
+size: 16,
 background: 'rgba(0, 0, 0, 0)',
-size: 16
+stroke: 0,
+strokeColor: '#FFFFFF'
 }</pre>
         <h4>font</h4>
         <p>The font property like css font-family and you can use web fonts like FontAwesome.</p>
         <h4>align</h4>
         <p>The align property specifies the horizontal alignment of text, use 'left', 'center' or 'right'.</p>
-        <h4>color & background</h4>
-        <p>The color and background property like css color.</p>
+        <h4>color & background & strokeColor</h4>
+        <p>The color, background and strokeColor property like css color.</p>
         <pre>/* &lt;named-color&gt; values */
 color: 'red'
 color: 'orange'
@@ -167,13 +182,13 @@ color: 'hsl(30, 100%, 50%, 0.6)
 color: 'hsla(30, 100%, 50%, 0.6)
 color: 'hsl(30 100% 50% / 0.6)
 color: 'hsla(30 100% 50% / 0.6)</pre>
-        <h4>size</h4>
-        <p>The size property is the font size only use numbers.</p>
+        <h4>size & stroke</h4>
+        <p>The size and stroke property is the text size and outline width, only use numbers.</p>
         <footer>
             <hr>
             <h3>License</h3>
             <p>This project is licensed under the MIT License - see the <a href="https://github.com/vincent7128/text-image/blob/master/LICENSE">LICENSE</a> file for details<p>
-            <p><small>page built @ %_DATE_%</small></p>
+            <p><small>version: %_VERSION_%, page built @ %_DATE_%</small></p>
         </footer>
     </div>
 </body>

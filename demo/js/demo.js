@@ -106,7 +106,6 @@ var img = textImage.toImage(message);
     form,
     textarea,
     gridLine,
-    fontSize, fontAlign, fontFamily,
     imageDisplay, imageDownload,
     codeExample;
 
@@ -115,13 +114,9 @@ function init() {
     form = document.querySelector('form');
     textarea = form.querySelector('textarea[name="image-text"]');
     gridLine = form.querySelector('input[name="grid-line"]');
-    fontSize = form.querySelector('select[name="font-size"]');
-    fontAlign = form.querySelector('select[name="font-align"]');
-    fontFamily = form.querySelector('select[name="font-family"]');
     imageDisplay = form.querySelector('.image-display');
     imageDownload = form.querySelector('.image-download');
     codeExample = document.querySelector('.code-example');
-    gridLine.addEventListener('change', showGridLine, false);
     form.addEventListener('change', updateImage, false);
     textarea.addEventListener('keyup', updateImage, false);
     for (var i = Math.floor(Math.random() * fontawesomeList.length - 10),
@@ -134,11 +129,13 @@ function init() {
 
 function updateImage() {
     var style = {
-            font: fontFamily.value,
-            align: fontAlign.value,
+            font: form.querySelector('select[name="font-family"]').value,
+            align: form.querySelector('select[name="font-align"]').value,
             color: form.querySelector('input[name="font-color"]:checked').value,
             background: form.querySelector('input[name="background-color"]:checked').value,
-            size: parseInt(fontSize.value)
+            stroke: parseInt(form.querySelector('input[name="stroke"]').value),
+            strokeColor: form.querySelector('input[name="stroke-color"]:checked').value,
+            size: parseInt(form.querySelector('input[name="font-size"]').value)
         },
         message = textarea.value.trim();
     if (!message) {
@@ -158,7 +155,6 @@ function updateImage() {
         } else {
             this.style.backgroundImage = textarea.style.backgroundImage = 'none';
         }
-        this.style.backgroundImage = textarea.style.backgroundImage;
         imageDisplay.innerHTML = this.outerHTML;
         imageDownload.href = this.src;
         imageDisplay.appendChild(imageDownload);
@@ -166,18 +162,6 @@ function updateImage() {
     var template = codeTemplate.replace('%MESSAGE%', JSON.stringify(textarea.value, null, 4));
     codeExample.innerHTML = template.replace('%STYLE%', JSON.stringify(textImage.style, null, 4));
     codeExample.style.display = 'block';
-}
-
-function showGridLine() {
-    var img = imageDisplay.querySelector('img');
-    if (!img) {
-        img = new Image();
-    }
-    if (this.checked) {
-        img.style.backgroundImage = textarea.style.backgroundImage = 'url(demo/img/grid-line.png)';
-    } else {
-        img.style.backgroundImage = textarea.style.backgroundImage = 'none';
-    }
 }
 
 window.addEventListener('load', init, false);
