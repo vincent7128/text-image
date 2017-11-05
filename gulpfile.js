@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     gulpsync = require('gulp-sync')(gulp),
     replace = require('gulp-replace'),
     fs = require('fs'),
-    PROJECT;
+    PROJECT,
+    DATE;
 
 gulp.task('clean', function() {
     return gulp.src(['dist', 'index.html'], {
@@ -25,12 +26,14 @@ gulp.task('build-dist', function() {
 
 gulp.task('make-gh-pages', function() {
     return gulp.src('demo/index.html')
-        .pipe(replace('%_VERSION_%', PROJECT.version))
-        .pipe(gulp.dest('.'));
+    .pipe(replace('%_VERSION_%', PROJECT.version))
+    .pipe(replace('%_DATE_%', DATE.toUTCString()))
+    .pipe(gulp.dest('.'));
 });
 
 gulp.task('init', function () {
     PROJECT = JSON.parse(fs.readFileSync('./package.json'));
+    DATE = new Date();
 })
 
 gulp.task('build', gulpsync.sync([
