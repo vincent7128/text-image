@@ -5,7 +5,8 @@
         _style = {
             font: 'Sans-serif',
             align: 'left',
-            color: '#000000',
+            color: 'rgba(0, 0, 0, 1)',
+            background: 'rgba(0, 0, 0, 0)',
             size: 16
         },
         preStyle = ';padding: 0; display: inline-block; position: fixed; top: 100%;';
@@ -18,6 +19,7 @@
         this._style += 'line-height: ' + this.style.size + 'pt;';
         this._style += 'text-align: ' + this.style.align + ';';
         this._style += 'color: ' + this.style.color + ';';
+        this._style += 'background-color: ' + this.style.background + ';';
         this._style += preStyle;
         return this;
     }
@@ -43,9 +45,13 @@
         context.clearRect(0, 0, canvas.width, canvas.height);
         canvas.width = pre.offsetWidth;
         canvas.height = pre.offsetHeight;
-        context.font = pre.style.font;
-        context.textAlign = pre.style.textAlign;
-        context.fillStyle = pre.style.color;
+        context.fillStyle = this.style.background;
+        context.beginPath();
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.fill();
+        context.font = this.style.size + 'pt ' + this.style.font;
+        context.textAlign = this.style.align;
+        context.fillStyle = this.style.color;
         var x = 0;
         switch (context.textAlign) {
             case 'center':
@@ -78,11 +84,14 @@
 
     window.TextImage = function(style) {
         var n = {
-            style: _style,
+            style: {},
             setStyle: setStyle,
             toDataURL: toDataURL,
             toImage: toImage
         };
+        for (var key in _style) {
+            n.style[key] = _style[key];
+        }
         n.setStyle(style);
         return n;
     }
