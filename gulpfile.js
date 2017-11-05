@@ -23,7 +23,7 @@ gulp.task('build-dist', function() {
         .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('create-github-page', function() {
+gulp.task('make-gh-pages', function() {
     return gulp.src('demo/index.html')
         .pipe(replace('%_VERSION_%', PROJECT.version))
         .pipe(gulp.dest('.'));
@@ -39,7 +39,7 @@ gulp.task('build', gulpsync.sync([
     'build-dist'
 ]));
 
-gulp.task('github-page', gulpsync.sync([
+gulp.task('gh-pages', gulpsync.sync([
     'build',
-    'create-github-page'
+    'make-gh-pages'
 ]));
