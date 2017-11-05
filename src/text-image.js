@@ -6,7 +6,7 @@
             font: 'Sans-serif',
             align: 'left',
             color: 'rgba(0, 0, 0, 1)',
-            background: 'rgba(255, 255, 255, 1)',
+            background: 'rgba(0, 0, 0, 0)',
             size: 16
         },
         preStyle = ';padding: 0; display: inline-block; position: fixed; top: 100%;';
