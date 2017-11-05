@@ -5,7 +5,7 @@
         _style = {
             font: 'Sans-serif',
             align: 'left',
-            color: '#000000',
+            color: 'rgba(0, 0, 0, 1)',
             size: 16
         },
         preStyle = ';padding: 0; display: inline-block; position: fixed; top: 100%;';
@@ -78,11 +78,14 @@
 
     window.TextImage = function(style) {
         var n = {
-            style: _style,
+            style: {},
             setStyle: setStyle,
             toDataURL: toDataURL,
             toImage: toImage
         };
+        for (var key in _style) {
+            n.style[key] = _style[key];
+        }
         n.setStyle(style);
         return n;
     }
