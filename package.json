@@ -1,8 +1,8 @@
 {
   "name": "text-image",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Convert text to image with javascript",
-  "main": "dist/text-image.js",
+  "main": "dist/text-image.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/vincent7128/text-image/issues"
   },
-  "homepage": "https://github.com/vincent7128/text-image#readme",
+  "homepage": "https://vincent7128.github.io/text-image/",
   "dependencies": {
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",

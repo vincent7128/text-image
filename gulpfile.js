@@ -20,7 +20,7 @@ gulp.task('clean', function() {
 gulp.task('build-dist', function() {
     return gulp.src('src/text-image.js')
         .pipe(uglify())
-        .pipe(rename({suffix: '-' + PROJECT.version + '.min'}))
+        .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('dist/'));
 });
 
