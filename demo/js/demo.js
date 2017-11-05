@@ -103,29 +103,27 @@ var textImage = TextImage(style);
 var img = textImage.toImage(message);
 `,
     textImage,
+    form,
     textarea,
     gridLine,
-    fontSize, fontAlign, fontColor, fontFamily,
+    fontSize, fontAlign, fontFamily,
     imageDisplay, imageDownload,
     codeExample;
 
 function init() {
     textImage = TextImage();
-    textarea = document.querySelector('textarea');
-    gridLine = document.querySelector('input[name="grid-line"]');
-    fontSize = document.querySelector('select[name="font-size"]');
-    fontAlign = document.querySelector('select[name="font-align"]');
-    fontColor = document.querySelector('select[name="font-color"]');
-    fontFamily = document.querySelector('select[name="font-family"]');
-    imageDisplay = document.querySelector('.image-display');
-    imageDownload = document.querySelector('.image-download');
+    form = document.querySelector('form');
+    textarea = form.querySelector('textarea[name="image-text"]');
+    gridLine = form.querySelector('input[name="grid-line"]');
+    fontSize = form.querySelector('select[name="font-size"]');
+    fontAlign = form.querySelector('select[name="font-align"]');
+    fontFamily = form.querySelector('select[name="font-family"]');
+    imageDisplay = form.querySelector('.image-display');
+    imageDownload = form.querySelector('.image-download');
     codeExample = document.querySelector('.code-example');
-    textarea.addEventListener('keyup', updateImage, false);
     gridLine.addEventListener('change', showGridLine, false);
-    fontSize.addEventListener('change', updateImage, false);
-    fontAlign.addEventListener('change', updateImage, false);
-    fontColor.addEventListener('change', updateImage, false);
-    fontFamily.addEventListener('change', updateImage, false);
+    form.addEventListener('change', updateImage, false);
+    textarea.addEventListener('keyup', updateImage, false);
     for (var i = Math.floor(Math.random() * fontawesomeList.length - 10),
              l = i + 10;
              i < l; i++) {
@@ -134,25 +132,15 @@ function init() {
     updateImage();
 }
 
-function getStyle() {
-    var style = {
-        font: fontFamily.value,
-        align: fontColor.align,
-        color: fontColor.value,
-        size: fontSize.value
-    };
-    textImage.setStyle(style);
-}
-
 function updateImage() {
     var style = {
             font: fontFamily.value,
             align: fontAlign.value,
-            color: fontColor.value,
+            color: form.querySelector('input[name="font-color"]:checked').value,
+            background: form.querySelector('input[name="background-color"]:checked').value,
             size: parseInt(fontSize.value)
         },
         message = textarea.value.trim();
-    fontColor.setAttribute('style', fontColor.options[fontColor.selectedIndex].getAttribute('style'));
     if (!message) {
         codeExample.innerHTML = imageDisplay.innerHTML = '';
         codeExample.style.display = 'none';

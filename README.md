@@ -2,10 +2,8 @@ Text Image
 ======
 
 ## About
-
+[📺 Live Demo](https://vincent7128.github.io/text-image/)
 Convert text to image. Work with unicode and web font like [FontAwesome](http://fontawesome.io/), you can use emoji too. 🚀
-
-#### [📺 Live Demo](https://vincent7128.github.io/text-image/)
 
 ## Usage
 
@@ -18,6 +16,7 @@ var style = {
     font: 'serif',
     align: 'center',
     color: 'red',
+    background: 'white',
     size: 18,
 };
 var textImage2 = TextImage(style);
@@ -40,7 +39,8 @@ The default style object
 {
     font: 'Sans-serif',
     align: 'left',
-    color: '#000000',
+    color: 'rgba(0, 0, 0, 1)',
+    background: 'rgba(0, 0, 0, 0)',
     size: 16
 }
 ```
@@ -52,9 +52,9 @@ The font property like css font-family and you can use web fonts like FontAwesom
 #### align
 The align property specifies the horizontal alignment of text, use 'left', 'center' or 'right'.
 
-#### color
+#### color & background
 
-The color property like css color.
+The color and background property like css color.
 
 ```
 /* <named-color> values */
