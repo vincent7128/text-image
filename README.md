@@ -2,7 +2,7 @@ Text Image
 ======
 
 ## About
-[📺 Live Demo](https://vincent7128.github.io/text-image/)
+[📺 Live Demo 📺](https://vincent7128.github.io/text-image/)  
 Convert text to image. Work with unicode and web font like [FontAwesome](http://fontawesome.io/), you can use emoji too. 🚀
 
 ## Usage
@@ -17,6 +17,8 @@ var style = {
     align: 'center',
     color: 'red',
     background: 'white',
+    stroke: 1,
+    strokeColor: 'rgba(0, 0, 0, 1)',
     size: 18,
 };
 var textImage2 = TextImage(style);
@@ -41,6 +43,8 @@ The default style object
     align: 'left',
     color: 'rgba(0, 0, 0, 1)',
     background: 'rgba(0, 0, 0, 0)',
+    stroke: 0,
+    strokeColor: 'rgba(0, 0, 0, 1)',
     size: 16
 }
 ```
@@ -52,9 +56,9 @@ The font property like css font-family and you can use web fonts like FontAwesom
 #### align
 The align property specifies the horizontal alignment of text, use 'left', 'center' or 'right'.
 
-#### color & background
+#### & background & strokeColor
 
-The color and background property like css color.
+The color, background and strokeColor property like css color.
 
 ```
 /* <named-color> values */
@@ -82,9 +86,9 @@ color: 'hsl(30 100% 50% / 0.6)'
 color: 'hsla(30 100% 50% / 0.6)'
 ```
 
-#### size
+#### size & stroke
 
-The size property is the font size only use numbers.
+The size and stroke property is the text size and outline width, only use numbers.
 
 ## License
 
