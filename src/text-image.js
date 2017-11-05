@@ -7,6 +7,8 @@
             align: 'left',
             color: 'rgba(0, 0, 0, 1)',
             background: 'rgba(0, 0, 0, 0)',
+            stroke: 0,
+            strokeColor: 'rgba(255, 255, 255, 1)',
             size: 16
         },
         preStyle = ';padding: 0; display: inline-block; position: fixed; top: 100%;';
@@ -39,37 +41,38 @@
     }
 
     function convert(message) {
-        message = message.trim();
-        pre.innerHTML = message;
+        message = String(message).trim();
+        pre.innerText = message;
         pre.setAttribute('style', this._style);
         context.clearRect(0, 0, canvas.width, canvas.height);
-        canvas.width = pre.offsetWidth;
-        canvas.height = pre.offsetHeight;
+        canvas.width = pre.offsetWidth + this.style.stroke;
+        canvas.height = pre.offsetHeight + (this.style.stroke * 2);
         context.fillStyle = this.style.background;
         context.beginPath();
         context.fillRect(0, 0, canvas.width, canvas.height);
         context.fill();
+        var lines = message.split('\n'),
+            x = this.style.stroke / 2,
+            y = Math.floor(canvas.height / lines.length);
         context.font = this.style.size + 'pt ' + this.style.font;
         context.textAlign = this.style.align;
+        context.lineWidth = x;
+        context.strokeStyle = this.style.strokeColor;
         context.fillStyle = this.style.color;
-        var x = 0;
         switch (context.textAlign) {
             case 'center':
                 x = canvas.width / 2;
                 break;
             case 'right':
-                x = canvas.width;
+                x = canvas.width - x;
                 break;
         }
-        var lines = message.split('\n');
-        if (lines.length == 1) {
-            context.fillText(message, x, canvas.height - 3);
-        } else {
-            var lineHeight = pre.offsetHeight / lines.length;
-            lines.forEach(function(line, i) {
-                context.fillText(line, x, (lineHeight * (i + 1)) - 3);
-            });
-        }
+        lines.forEach(function(line, i) {
+            if (x) {
+                context.strokeText(line, x, y * (i + 1) - 3);
+            }
+            context.fillText(line, x, y * (i + 1) - 3);
+        });
     }
 
     if (window.addEventListener) {
