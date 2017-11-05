@@ -5,11 +5,11 @@
         _style = {
             font: 'Sans-serif',
             align: 'left',
-            color: 'rgba(0, 0, 0, 1)',
+            color: '#000000',
+            size: 16,
             background: 'rgba(0, 0, 0, 0)',
             stroke: 0,
-            strokeColor: 'rgba(255, 255, 255, 1)',
-            size: 16
+            strokeColor: '#FFFFFF'
         },
         preStyle = ';padding: 0; display: inline-block; position: fixed; top: 100%;';
 

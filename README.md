@@ -16,10 +16,10 @@ var style = {
     font: 'serif',
     align: 'center',
     color: 'red',
+    size: 18,
     background: 'white',
     stroke: 1,
-    strokeColor: 'rgba(0, 0, 0, 1)',
-    size: 18,
+    strokeColor: 'rgba(0, 0, 0, 1)'
 };
 var textImage2 = TextImage(style);
 
@@ -41,11 +41,11 @@ The default style object
 {
     font: 'Sans-serif',
     align: 'left',
-    color: 'rgba(0, 0, 0, 1)',
+    color: '#000000',
+    size: 16,
     background: 'rgba(0, 0, 0, 0)',
     stroke: 0,
-    strokeColor: 'rgba(0, 0, 0, 1)',
-    size: 16
+    strokeColor: '#FFFFFF'
 }
 ```
 
