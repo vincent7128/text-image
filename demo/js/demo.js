@@ -132,10 +132,10 @@ function updateImage() {
             font: form.querySelector('select[name="font-family"]').value,
             align: form.querySelector('select[name="font-align"]').value,
             color: form.querySelector('input[name="font-color"]:checked').value,
+            size: parseInt(form.querySelector('input[name="font-size"]').value),
             background: form.querySelector('input[name="background-color"]:checked').value,
             stroke: parseInt(form.querySelector('input[name="stroke"]').value),
-            strokeColor: form.querySelector('input[name="stroke-color"]:checked').value,
-            size: parseInt(form.querySelector('input[name="font-size"]').value)
+            strokeColor: form.querySelector('input[name="stroke-color"]:checked').value
         },
         message = textarea.value.trim();
     if (!message) {
@@ -147,7 +147,7 @@ function updateImage() {
     textarea.setAttribute('style',
         'font: ' + textImage.style.size + 'pt ' + textImage.style.font + ';' +
         'text-align: ' + textImage.style.align + ';' +
-        'line-height: ' + textImage.style.size + 'pt;' +
+        'line-height: 1;' +
         'color: ' + textImage.style.color + ';');
     textImage.toImage(message, function() {
         if (gridLine.checked) {

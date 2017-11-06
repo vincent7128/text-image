@@ -2,7 +2,7 @@ Text Image
 ======
 
 ## About
-[📺 Live Demo 📺](https://vincent7128.github.io/text-image/)  
+[📺 Live Demo](https://vincent7128.github.io/text-image/)  
 Convert text to image. Work with unicode and web font like [FontAwesome](http://fontawesome.io/), you can use emoji too. 🚀
 
 ## Usage
@@ -56,7 +56,7 @@ The font property like css font-family and you can use web fonts like FontAwesom
 #### align
 The align property specifies the horizontal alignment of text, use 'left', 'center' or 'right'.
 
-#### & background & strokeColor
+#### color & background & strokeColor
 
 The color, background and strokeColor property like css color.
 
