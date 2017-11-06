@@ -1,3 +1,4 @@
-node_modules
-demo
+.DS_Store
 gulpfile.js
+demo/
+node_modules/
