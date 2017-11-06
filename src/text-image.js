@@ -11,7 +11,7 @@
             stroke: 0,
             strokeColor: '#FFFFFF'
         },
-        preStyle = ';padding: 0; display: block; position: fixed; top: 0;overflow: hidden';
+        preStyle = ';padding: 0; display: block; position: fixed; top: 100%;overflow: hidden';
 
     function setStyle(style) {
         for (var key in style) {
