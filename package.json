@@ -1,6 +1,6 @@
 {
   "name": "text-image",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Convert text to image with javascript",
   "main": "dist/text-image.min.js",
   "scripts": {
