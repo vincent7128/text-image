@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
     clean = require('gulp-clean'),
     uglify = require('gulp-uglify'),
-    rename = require('gulp-rename'),
     gulpsync = require('gulp-sync')(gulp),
     replace = require('gulp-replace'),
     fs = require('fs'),
@@ -20,7 +19,6 @@ gulp.task('clean', function() {
 gulp.task('build-dist', function() {
     return gulp.src('src/text-image.js')
         .pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('dist/'));
 });
 
