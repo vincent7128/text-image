@@ -11,14 +11,14 @@
             stroke: 0,
             strokeColor: '#FFFFFF'
         },
-        preStyle = ';padding: 0; display: inline-block; position: fixed; top: 100%;';
+        preStyle = ';padding: 0; display: block; position: fixed; top: 100%;overflow: hidden';
 
     function setStyle(style) {
         for (var key in style) {
             this.style[key] = style[key];
         }
         this._style = 'font: ' + this.style.size + 'pt ' + this.style.font + ';';
-        this._style += 'line-height: ' + this.style.size + 'pt;';
+        this._style += 'line-height: 1;';
         this._style += 'text-align: ' + this.style.align + ';';
         this._style += 'color: ' + this.style.color + ';';
         this._style += 'background-color: ' + this.style.background + ';';
@@ -45,15 +45,16 @@
         pre.innerText = message;
         pre.setAttribute('style', this._style);
         context.clearRect(0, 0, canvas.width, canvas.height);
-        canvas.width = pre.offsetWidth + this.style.stroke;
-        canvas.height = pre.offsetHeight + (this.style.stroke * 2);
+        var lines = message.split('\n'),
+            x = Math.floor(this.style.stroke / 2),
+            y = pre.offsetHeight / lines.length,
+            base = y * 0.2;
+        canvas.width = pre.offsetWidth + x;
+        canvas.height = pre.offsetHeight;
         context.fillStyle = this.style.background;
         context.beginPath();
         context.fillRect(0, 0, canvas.width, canvas.height);
         context.fill();
-        var lines = message.split('\n'),
-            x = this.style.stroke / 2,
-            y = Math.floor(canvas.height / lines.length);
         context.font = this.style.size + 'pt ' + this.style.font;
         context.textAlign = this.style.align;
         context.lineWidth = x;
@@ -68,11 +69,11 @@
                 break;
         }
         lines.forEach(function(line, i) {
-            if (x) {
-                context.strokeText(line, x, y * (i + 1) - 3);
+            if (this.style.stroke) {
+                context.strokeText(line, x, y * (i + 1) - base);
             }
-            context.fillText(line, x, y * (i + 1) - 3);
-        });
+            context.fillText(line, x, y * (i + 1) - base);
+        }.bind(this));
     }
 
     if (window.addEventListener) {
