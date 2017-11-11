@@ -30,3 +30,9 @@ textarea[name="image-text"] {
     display: none;
     font-family: FontAwesome, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+@media (max-width: 767px) {
+    .fork-me img {
+        width: 120px;
+    }
+}
