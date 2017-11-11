@@ -44,13 +44,14 @@
         message = String(message).trim();
         pre.innerText = message;
         pre.setAttribute('style', this._style);
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        document.body.append(pre);
         var lines = message.split('\n'),
             x = Math.floor(this.style.stroke / 2),
             y = pre.offsetHeight / lines.length,
             base = y * 0.2;
         canvas.width = pre.offsetWidth + x;
         canvas.height = pre.offsetHeight;
+        context.clearRect(0, 0, canvas.width, canvas.height);
         context.fillStyle = this.style.background;
         context.beginPath();
         context.fillRect(0, 0, canvas.width, canvas.height);
@@ -74,17 +75,8 @@
             }
             context.fillText(line, x, y * (i + 1) - base);
         }.bind(this));
+        document.body.removeChild(pre);
     }
-
-    if (window.addEventListener) {
-        window.addEventListener('load', onload, false)
-    } else {
-        window.attachEvent('onload', onload, false)
-    }
-
-    function onload() {
-        document.body.appendChild(pre);
-    };
 
     window.TextImage = function(style) {
         var n = {
