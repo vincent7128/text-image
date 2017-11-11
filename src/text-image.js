@@ -11,11 +11,27 @@
             stroke: 0,
             strokeColor: '#FFFFFF'
         },
-        preStyle = ';padding: 0; display: block; position: fixed; top: 100%;overflow: hidden';
+        preStyle = ';padding: 0; display: block; position: fixed; top: 100%;overflow: hidden',
+        fn;
 
-    function setStyle(style) {
-        for (var key in style) {
-            this.style[key] = style[key];
+    window.TextImage = function(style) {
+        if (!(this instanceof TextImage)) {
+            return new TextImage(style);
+        }
+        this.setStyle(style);
+        return this;
+    }
+
+    fn = window.TextImage.prototype;
+
+    fn.setStyle = function(style) {
+        this.style = {};
+        for (var key in _style) {
+            if (style && style[key]) {
+                this.style[key] = style[key];
+            } else {
+                this.style[key] = _style[key];
+            }
         }
         this._style = 'font: ' + this.style.size + 'pt ' + this.style.font + ';';
         this._style += 'line-height: 1;';
@@ -26,11 +42,14 @@
         return this;
     }
 
-    function toDataURL() {
+    fn.toDataURL = function(message) {
+        if (message) {
+            convert.call(this, message);
+        }
         return canvas.toDataURL();
     }
 
-    function toImage(message, callback) {
+    fn.toImage = function(message, callback) {
         convert.call(this, message);
         var img = new Image();
         if (callback) {
@@ -76,19 +95,5 @@
             context.fillText(line, x, y * (i + 1) - base);
         }.bind(this));
         document.body.removeChild(pre);
-    }
-
-    window.TextImage = function(style) {
-        var n = {
-            style: {},
-            setStyle: setStyle,
-            toDataURL: toDataURL,
-            toImage: toImage
-        };
-        for (var key in _style) {
-            n.style[key] = _style[key];
-        }
-        n.setStyle(style);
-        return n;
     }
 })();
