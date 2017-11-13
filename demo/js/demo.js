@@ -137,7 +137,7 @@ function updateImage() {
             stroke: parseInt(form.querySelector('input[name="stroke"]').value),
             strokeColor: form.querySelector('input[name="stroke-color"]:checked').value
         },
-        message = textarea.value.trim();
+        message = textarea.value;
     if (!message) {
         codeExample.innerHTML = imageDisplay.innerHTML = '';
         codeExample.style.display = 'none';
