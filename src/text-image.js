@@ -60,7 +60,7 @@
     }
 
     function convert(message) {
-        message = String(message).trim();
+        message = String(message);
         pre.innerText = message;
         pre.setAttribute('style', this._style);
         document.body.append(pre);
