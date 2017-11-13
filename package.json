@@ -2,7 +2,7 @@
   "name": "text-image",
   "version": "0.5.0",
   "description": "Convert text to image with javascript",
-  "main": "dist/text-image.min.js",
+  "main": "dist/text-image.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
