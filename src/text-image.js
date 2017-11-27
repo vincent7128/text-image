@@ -64,10 +64,10 @@
         pre.setAttribute('style', this._style);
         document.body.append(pre);
         var lines = message.split('\n'),
-            x = Math.floor(this.style.stroke / 2),
+            x = this.style.stroke,
             y = pre.offsetHeight / lines.length,
             base = y * 0.25;
-        canvas.width = pre.offsetWidth + x;
+        canvas.width = pre.offsetWidth + (x * 2);
         canvas.height = pre.offsetHeight;
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.fillStyle = this.style.background;
@@ -76,7 +76,7 @@
         context.fill();
         context.font = this.style.size + 'pt ' + this.style.font;
         context.textAlign = this.style.align;
-        context.lineWidth = x;
+        context.lineWidth = this.style.stroke;
         context.strokeStyle = this.style.strokeColor;
         context.fillStyle = this.style.color;
         switch (context.textAlign) {
