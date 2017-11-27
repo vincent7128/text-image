@@ -97,11 +97,11 @@ var fontawesomeList = [
         '\uf2d6', '\uf2d7', '\uf2d8', '\uf2d9', '\uf2da', '\uf2db', '\uf2dc',
         '\uf2dd', '\uf2de', '\uf2e0'
     ],
-    codeTemplate = `var message = %MESSAGE%;
-var style = %STYLE%;
-var textImage = TextImage(style);
-var img = textImage.toImage(message);
-`,
+    codeTemplate = 'var message = %MESSAGE%;\
+var style = %STYLE%;\
+var textImage = TextImage(style);\
+var img = textImage.toImage(message);\
+',
     textImage,
     form,
     textarea,
@@ -120,8 +120,7 @@ function init() {
     form.addEventListener('change', updateImage, false);
     textarea.addEventListener('keyup', updateImage, false);
     for (var i = Math.floor(Math.random() * fontawesomeList.length - 10),
-             l = i + 10;
-             i < l; i++) {
+            l = i + 10; i < l; i++) {
         textarea.value += fontawesomeList[i] + ' ';
     }
     updateImage();
@@ -135,7 +134,9 @@ function updateImage() {
             size: parseInt(form.querySelector('input[name="font-size"]').value),
             background: form.querySelector('input[name="background-color"]:checked').value,
             stroke: parseInt(form.querySelector('input[name="stroke"]').value),
-            strokeColor: form.querySelector('input[name="stroke-color"]:checked').value
+            strokeColor: form.querySelector('input[name="stroke-color"]:checked').value,
+            lineHeight: form.querySelector('input[name="line-height"]').value +
+                form.querySelector('select[name="line-height-unit"]').value
         },
         message = textarea.value;
     if (!message) {
@@ -147,7 +148,7 @@ function updateImage() {
     textarea.setAttribute('style',
         'font: ' + textImage.style.size + 'pt ' + textImage.style.font + ';' +
         'text-align: ' + textImage.style.align + ';' +
-        'line-height: 1;' +
+        'line-height: ' + textImage.style.lineHeight + ';' +
         'color: ' + textImage.style.color + ';');
     textImage.toImage(message, function() {
         if (gridLine.checked) {
