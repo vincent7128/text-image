@@ -27,7 +27,8 @@ var style = {
     size: 18,
     background: 'white',
     stroke: 1,
-    strokeColor: 'rgba(0, 0, 0, 1)'
+    strokeColor: 'rgba(0, 0, 0, 0)',
+    lineHeight: '1.6em'
 };
 var textImage2 = TextImage(style);
 
@@ -51,9 +52,10 @@ The default style object
     align: 'left',
     color: '#000000',
     size: 16,
-    background: 'rgba(0, 0, 0, 0)',
+    background: 'rgba(0, 0, 0, 1)',
     stroke: 0,
-    strokeColor: '#FFFFFF'
+    strokeColor: '#FFFFFF',
+    lineHeight: '1.2em'
 }
 ```
 
@@ -97,6 +99,11 @@ color: 'hsla(30 100% 50% / 0.6)'
 #### size & stroke
 
 The size and stroke property is the text size and outline width, only use numbers.
+
+#### lineHeight
+
+The lineHeight property like css line-height.
+
 
 ## License
 
