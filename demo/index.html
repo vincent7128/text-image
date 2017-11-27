@@ -87,7 +87,7 @@ Cambia este texto crea tu imagen.
             </div>
             <div class="form-group">
                 <label>Stroke:</label>
-                <input name="stroke" type="number" value="0" min="0" max="6"/>
+                <input name="stroke" type="number" value="0" min="0"/>
             </div>
             <div class="form-group">
                 <label>Stroke color:</label>
@@ -115,6 +115,16 @@ Cambia este texto crea tu imagen.
                     <option value="'Dancing Script', cursive">Dancing Script</option>
                     <option selected value="FontAwesome,'Helvetica Neue',Helvetica,Arial,sans-serif">FontAwesome,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif</option>
                 </select>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label>Line height:</label>
+                    <input name="line-height" type="number" step="0.1" value="1.2" />
+                    <select name="line-height-unit">
+                        <option value="em">em</option>
+                        <option value="px">px</option>
+                    </select>
+                </div>
             </div>
         </form>
         <hr>

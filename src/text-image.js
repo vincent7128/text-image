@@ -9,9 +9,10 @@
             size: 16,
             background: 'rgba(0, 0, 0, 0)',
             stroke: 0,
-            strokeColor: '#FFFFFF'
+            strokeColor: '#FFFFFF',
+            lineHeight: '1.2em'
         },
-        preStyle = ';padding: 0; display: block; position: fixed; top: 100%;overflow: hidden',
+        preStyle = ';padding: 0; display: block; position: fixed; top: 100%; overflow: hidden;',
         fn;
 
     window.TextImage = function(style) {
@@ -25,16 +26,14 @@
     fn = window.TextImage.prototype;
 
     fn.setStyle = function(style) {
-        this.style = {};
+        this.style = style || {};
         for (var key in _style) {
-            if (style && style[key]) {
-                this.style[key] = style[key];
-            } else {
+            if (!this.style[key]) {
                 this.style[key] = _style[key];
             }
         }
         this._style = 'font: ' + this.style.size + 'pt ' + this.style.font + ';';
-        this._style += 'line-height: 1;';
+        this._style += 'line-height:' + this.style.lineHeight + ';';
         this._style += 'text-align: ' + this.style.align + ';';
         this._style += 'color: ' + this.style.color + ';';
         this._style += 'background-color: ' + this.style.background + ';';
@@ -67,7 +66,7 @@
         var lines = message.split('\n'),
             x = Math.floor(this.style.stroke / 2),
             y = pre.offsetHeight / lines.length,
-            base = y * 0.2;
+            base = y * 0.25;
         canvas.width = pre.offsetWidth + x;
         canvas.height = pre.offsetHeight;
         context.clearRect(0, 0, canvas.width, canvas.height);
