@@ -28,7 +28,9 @@ var style = {
     background: 'white',
     stroke: 1,
     strokeColor: 'rgba(0, 0, 0, 0)',
-    lineHeight: '1.6em'
+    lineHeight: '1.6em',
+    bold: true,
+    italic: true
 };
 var textImage2 = TextImage(style);
 
