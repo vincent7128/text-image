@@ -83,7 +83,19 @@
         context.beginPath();
         context.fillRect(0, 0, canvas.width, canvas.height);
         context.fill();
-        context.font = this.style.size + 'pt ' + this.style.font;
+
+        var context_font = '';
+        // add bold/italic
+        if (this.style.italic) {
+            context_font += 'italic ';
+        }
+        if (this.style.bold) {
+            context_font += 'bold ';
+        }
+        // append size, font
+        context_font += this.style.size + 'pt ' + this.style.font; 
+
+        context.font = context_font;
         context.textAlign = this.style.align;
         context.lineWidth = this.style.stroke;
         context.strokeStyle = this.style.strokeColor;
