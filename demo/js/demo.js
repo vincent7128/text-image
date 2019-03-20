@@ -114,6 +114,8 @@ function init() {
     form = document.querySelector('form');
     textarea = form.querySelector('textarea[name="image-text"]');
     gridLine = form.querySelector('input[name="grid-line"]');
+    bold = form.querySelector('input[name="bold"]');
+    italic = form.querySelector('input[name="italic"]');
     imageDisplay = form.querySelector('.image-display');
     imageDownload = form.querySelector('.image-download');
     codeExample = document.querySelector('.code-example');
@@ -137,8 +139,8 @@ function updateImage() {
             strokeColor: form.querySelector('input[name="stroke-color"]:checked').value,
             lineHeight: form.querySelector('input[name="line-height"]').value +
                 form.querySelector('select[name="line-height-unit"]').value,
-            bold: form.querySelector('input[name="bold"]').value,
-            italic: form.querySelector('input[name="italic"]').value
+            bold: bold.checked,
+            italic: italic.checked
         },
         message = textarea.value;
     if (!message) {
