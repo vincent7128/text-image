@@ -114,6 +114,8 @@ function init() {
     form = document.querySelector('form');
     textarea = form.querySelector('textarea[name="image-text"]');
     gridLine = form.querySelector('input[name="grid-line"]');
+    bold = form.querySelector('input[name="bold"]');
+    italic = form.querySelector('input[name="italic"]');
     imageDisplay = form.querySelector('.image-display');
     imageDownload = form.querySelector('.image-download');
     codeExample = document.querySelector('.code-example');
@@ -136,7 +138,9 @@ function updateImage() {
             stroke: parseInt(form.querySelector('input[name="stroke"]').value),
             strokeColor: form.querySelector('input[name="stroke-color"]:checked').value,
             lineHeight: form.querySelector('input[name="line-height"]').value +
-                form.querySelector('select[name="line-height-unit"]').value
+                form.querySelector('select[name="line-height-unit"]').value,
+            bold: bold.checked,
+            italic: italic.checked
         },
         message = textarea.value;
     if (!message) {
@@ -152,7 +156,7 @@ function updateImage() {
         'color: ' + textImage.style.color + ';');
     textImage.toImage(message, function() {
         if (gridLine.checked) {
-            this.style.backgroundImage = textarea.style.backgroundImage = 'url(demo/img/grid-line.png)';
+            this.style.backgroundImage = textarea.style.backgroundImage = 'url(../demo/img/grid-line.png)';
         } else {
             this.style.backgroundImage = textarea.style.backgroundImage = 'none';
         }

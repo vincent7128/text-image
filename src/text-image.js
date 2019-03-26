@@ -10,7 +10,9 @@
             background: 'rgba(0, 0, 0, 0)',
             stroke: 0,
             strokeColor: '#FFFFFF',
-            lineHeight: '1.2em'
+            lineHeight: '1.2em',
+            bold: false,
+            italic: false
         },
         preStyle = ';padding: 0; display: block; position: fixed; top: 100%; overflow: hidden;',
         fn;
@@ -32,7 +34,14 @@
                 this.style[key] = _style[key];
             }
         }
-        this._style = 'font: ' + this.style.size + 'pt ' + this.style.font + ';';
+        this._style = 'font: ';
+        if (this.style.italic) {
+            this._style += 'italic ';
+        }
+        if (this.style.bold) {
+            this._style += 'bold ';
+        }
+        this._style += this.style.size + 'pt ' + this.style.font + ';';
         this._style += 'line-height:' + this.style.lineHeight + ';';
         this._style += 'text-align: ' + this.style.align + ';';
         this._style += 'color: ' + this.style.color + ';';
@@ -74,7 +83,19 @@
         context.beginPath();
         context.fillRect(0, 0, canvas.width, canvas.height);
         context.fill();
-        context.font = this.style.size + 'pt ' + this.style.font;
+
+        var context_font = '';
+        // add bold/italic
+        if (this.style.italic) {
+            context_font += 'italic ';
+        }
+        if (this.style.bold) {
+            context_font += 'bold ';
+        }
+        // append size, font
+        context_font += this.style.size + 'pt ' + this.style.font; 
+
+        context.font = context_font;
         context.textAlign = this.style.align;
         context.lineWidth = this.style.stroke;
         context.strokeStyle = this.style.strokeColor;
