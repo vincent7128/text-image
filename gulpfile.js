@@ -1,46 +1,36 @@
-var gulp = require('gulp'),
-    clean = require('gulp-clean'),
-    uglify = require('gulp-uglify'),
-    gulpsync = require('gulp-sync')(gulp),
-    replace = require('gulp-replace'),
-    fs = require('fs'),
-    PROJECT,
-    DATE;
+const {
+    src,
+    dest,
+    series
+} = require('gulp')
+const del = require('del')
+const uglify = require('gulp-uglify')
+const replace = require('gulp-replace')
+const fs = require('fs')
+const PROJECT = JSON.parse(fs.readFileSync('./package.json'))
+const DATE = new Date()
 
-gulp.task('clean', function() {
-    return gulp.src(['dist', 'index.html'], {
-            read: false
-        })
-        .pipe(clean({
-            force: true
-        }));
-});
+function clean(cb) {
+    del(['dist/*', 'index.html'])
+    cb()
+}
 
-gulp.task('build-dist', function() {
-    return gulp.src('src/text-image.js')
+function build_dist(cb) {
+    src('src/text-image.js')
         .pipe(uglify())
-        .pipe(gulp.dest('dist/'));
-});
+        .pipe(dest('dist/'))
+    cb()
+}
 
-gulp.task('make-gh-pages', function() {
-    return gulp.src('demo/index.html')
-    .pipe(replace('%_VERSION_%', PROJECT.version))
-    .pipe(replace('%_DATE_%', DATE.toUTCString()))
-    .pipe(gulp.dest('.'));
-});
+function make_gh_pages(cb) {
+    src('demo/index.html')
+        .pipe(replace('%_VERSION_%', PROJECT.version))
+        .pipe(replace('%_DATE_%', DATE.toUTCString()))
+        .pipe(replace('../', ''))
+        .pipe(dest('.'))
+    cb()
+}
 
-gulp.task('init', function () {
-    PROJECT = JSON.parse(fs.readFileSync('./package.json'));
-    DATE = new Date();
-})
+exports.build = series(clean, build_dist)
 
-gulp.task('build', gulpsync.sync([
-    'init',
-    'clean',
-    'build-dist'
-]));
-
-gulp.task('gh-pages', gulpsync.sync([
-    'build',
-    'make-gh-pages'
-]));
+exports.ghpages = series(clean, build_dist, make_gh_pages)

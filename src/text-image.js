@@ -1,4 +1,4 @@
-(function() {
+(function () {
     var pre = document.createElement('pre'),
         canvas = document.createElement('canvas'),
         context = canvas.getContext('2d'),
@@ -10,12 +10,14 @@
             background: 'rgba(0, 0, 0, 0)',
             stroke: 0,
             strokeColor: '#FFFFFF',
-            lineHeight: '1.2em'
+            lineHeight: '1.2em',
+            bold: false,
+            italic: false
         },
         preStyle = ';padding: 0; display: block; position: fixed; top: 100%; overflow: hidden;',
         fn;
 
-    window.TextImage = function(style) {
+    window.TextImage = function (style) {
         if (!(this instanceof TextImage)) {
             return new TextImage(style);
         }
@@ -25,14 +27,21 @@
 
     fn = window.TextImage.prototype;
 
-    fn.setStyle = function(style) {
+    fn.setStyle = function (style) {
         this.style = style || {};
         for (var key in _style) {
             if (!this.style[key]) {
                 this.style[key] = _style[key];
             }
         }
-        this._style = 'font: ' + this.style.size + 'pt ' + this.style.font + ';';
+        this._style = 'font: ';
+        if (this.style.italic) {
+            this._style += 'italic ';
+        }
+        if (this.style.bold) {
+            this._style += 'bold ';
+        }
+        this._style += this.style.size + 'pt ' + this.style.font + ';';
         this._style += 'line-height:' + this.style.lineHeight + ';';
         this._style += 'text-align: ' + this.style.align + ';';
         this._style += 'color: ' + this.style.color + ';';
@@ -41,14 +50,14 @@
         return this;
     }
 
-    fn.toDataURL = function(message) {
+    fn.toDataURL = function (message) {
         if (message) {
             convert.call(this, message);
         }
         return canvas.toDataURL();
     }
 
-    fn.toImage = function(message, callback) {
+    fn.toImage = function (message, callback) {
         convert.call(this, message);
         var img = new Image();
         if (callback) {
@@ -74,7 +83,19 @@
         context.beginPath();
         context.fillRect(0, 0, canvas.width, canvas.height);
         context.fill();
-        context.font = this.style.size + 'pt ' + this.style.font;
+
+        var context_font = '';
+        // add bold/italic
+        if (this.style.italic) {
+            context_font += 'italic ';
+        }
+        if (this.style.bold) {
+            context_font += 'bold ';
+        }
+        // append size, font
+        context_font += this.style.size + 'pt ' + this.style.font;
+
+        context.font = context_font;
         context.textAlign = this.style.align;
         context.lineWidth = this.style.stroke;
         context.strokeStyle = this.style.strokeColor;
@@ -87,7 +108,7 @@
                 x = canvas.width - x;
                 break;
         }
-        lines.forEach(function(line, i) {
+        lines.forEach(function (line, i) {
             if (this.style.stroke) {
                 context.strokeText(line, x, y * (i + 1) - base);
             }
