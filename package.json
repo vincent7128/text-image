@@ -21,12 +21,11 @@
     "url": "https://github.com/vincent7128/text-image/issues"
   },
   "homepage": "https://vincent7128.github.io/text-image/",
-  "dependencies": {
-    "gulp": "^3.9.1",
-    "gulp-clean": "^0.3.2",
-    "gulp-replace": "^0.6.1",
-    "gulp-sync": "^0.1.4",
-    "gulp-uglify": "^3.0.0",
-    "uglifyjs": "^2.4.11"
+  "devDependencies": {
+    "del": "^4.0.0",
+    "gulp": "^4.0.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-uglify": "^3.0.2",
+    "uglify-js": "^3.5.2"
   }
 }
